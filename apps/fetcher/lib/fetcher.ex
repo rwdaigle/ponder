@@ -1,18 +1,9 @@
 defmodule Fetcher do
-  @moduledoc """
-  Documentation for Fetcher.
-  """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Fetcher.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def fetch_sources do
+    Application.get_env(:fetcher, :sources)
+    |> Enum.map(&Task.async(&1, :recent, []))
+    |> Enum.map(&Task.await(&1, 30000))
+    |> List.flatten
   end
 end
