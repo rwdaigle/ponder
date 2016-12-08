@@ -4,7 +4,7 @@ defmodule ITunesSourceTest do
   @moduletag :remote
 
   alias Fetcher.Source.ITunes, as: Source
-  alias Fetcher.Podcast
+  alias ReviewCast.Podcast
 
   test "fetches recent podcasts" do
     recent_podcasts = Source.recent

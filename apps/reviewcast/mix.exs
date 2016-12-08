@@ -1,8 +1,8 @@
-defmodule Fetcher.Mixfile do
+defmodule Reviewcast.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :fetcher,
+    [app: :reviewcast,
      version: "0.1.0",
      build_path: "../../_build",
      config_path: "../../config/config.exs",
@@ -20,7 +20,7 @@ defmodule Fetcher.Mixfile do
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
     [extra_applications: [:logger],
-     mod: {Fetcher.Application, []}]
+     mod: {Reviewcast.Application, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -37,10 +37,6 @@ defmodule Fetcher.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [
-      {:reviewcast, in_umbrella: true},
-      {:poison, "~> 3.0"},
-      {:httpotion, "~> 3.0.2"}
-    ]
+    []
   end
 end
