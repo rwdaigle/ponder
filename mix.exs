@@ -1,4 +1,4 @@
-defmodule Podder.Mixfile do
+defmodule ReviewCast.Mixfile do
   use Mix.Project
 
   def project do
