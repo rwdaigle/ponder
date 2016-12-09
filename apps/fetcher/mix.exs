@@ -39,8 +39,9 @@ defmodule Fetcher.Mixfile do
   defp deps do
     [
       {:reviewcast, in_umbrella: true},
-      {:poison, "~> 3.0"},
-      {:httpotion, "~> 3.0.2"}
+      {:poison, "~> 2.0"},
+      {:httpotion, "~> 3.0.2"},
+      {:ecto, "~> 2.0"}
     ]
   end
 end

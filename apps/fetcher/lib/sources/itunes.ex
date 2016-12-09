@@ -2,6 +2,7 @@ defmodule Fetcher.Source.ITunes do
 
   @behaviour Fetcher.Source
 
+  alias Fetcher.Source
   alias ReviewCast.Podcast
   alias HTTPotion.Response
   alias Poison.Parser, as: JSON
@@ -20,21 +21,24 @@ defmodule Fetcher.Source.ITunes do
   end
 
   defp parse_entry(entry) do
-    with title = entry |> get_in(["im:name", "label"]),
-         html_url = entry |> get_in(["link", "attributes", "href"]),
-         source_id = entry |> get_in(["id", "attributes", "im:id"]),
-         description = entry |> get_in(["summary", "label"]),
-         images = entry |> get_in(["im:image"]),
-         image_url = images |> List.last |> Map.get("label") do
+    params = %{
+      title: get_in(entry, ["im:name", "label"]),
+      source: "itunes",
+      description: get_in(entry, ["summary", "label"]),
+      html_url: get_in(entry, ["link", "attributes", "href"]),
+      image_url: image_url(entry),
+      source_id: get_in(entry, ["id", "attributes", "im:id"])
+    }
 
-      %Podcast{
-        title: title,
-        source: "itunes",
-        description: description,
-        html_url: html_url,
-        image_url: image_url,
-        source_id: source_id
-      }
+    with {:ok, podcast} <- Source.podcast(params) do
+      podcast
     end
+  end
+
+  defp image_url(entry) do
+    entry
+    |> get_in(["im:image"])
+    |> List.last
+    |> Map.get("label")
   end
 end
