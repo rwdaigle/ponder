@@ -1,9 +1,14 @@
 defmodule ServerTest do
 
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
   import Ecto.Query
   alias ReviewCast.Podcast
   alias Server.PodcastRepo
+
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Server.PodcastRepo)
+    Ecto.Adapters.SQL.Sandbox.mode(Server.PodcastRepo, {:shared, self()})
+  end
 
   test "importing podcasts" do
     1..10
@@ -11,6 +16,9 @@ defmodule ServerTest do
     |> Server.import
 
     assert PodcastRepo.one(from p in Podcast, select: count(p.id)) == 10
+  end
+
+  test "updates existing podcasts on import" do
   end
 
   defp podcast(i) do
