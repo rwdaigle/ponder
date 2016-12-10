@@ -38,7 +38,6 @@ defmodule Fetcher.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:server, in_umbrella: true},
       {:poison, "~> 2.0"},
       {:httpotion, "~> 3.0.2"},
       {:ecto, "~> 2.0"}

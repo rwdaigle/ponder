@@ -2,8 +2,6 @@ defmodule Fetcher.Source.ITunes do
 
   @behaviour Fetcher.Source
 
-  alias Fetcher.Source
-  alias ReviewCast.Model.Podcast
   alias HTTPotion.Response
   alias Poison.Parser, as: JSON
 
@@ -21,7 +19,7 @@ defmodule Fetcher.Source.ITunes do
   end
 
   defp parse_entry(entry) do
-    params = %{
+    %{
       title: get_in(entry, ["im:name", "label"]),
       source: "itunes",
       description: get_in(entry, ["summary", "label"]),
@@ -29,10 +27,6 @@ defmodule Fetcher.Source.ITunes do
       image_url: image_url(entry),
       source_id: get_in(entry, ["id", "attributes", "im:id"])
     }
-
-    with {:ok, podcast} <- Source.podcast(params) do
-      podcast
-    end
   end
 
   defp image_url(entry) do
