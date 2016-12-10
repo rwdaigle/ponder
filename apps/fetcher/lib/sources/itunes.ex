@@ -3,7 +3,7 @@ defmodule Fetcher.Source.ITunes do
   @behaviour Fetcher.Source
 
   alias Fetcher.Source
-  alias ReviewCast.Podcast
+  alias ReviewCast.Model.Podcast
   alias HTTPotion.Response
   alias Poison.Parser, as: JSON
 

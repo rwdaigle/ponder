@@ -2,7 +2,7 @@ defmodule MockSourceTest do
 
   use ExUnit.Case, async: true
   alias Fetcher.Source.Mock, as: Source
-  alias ReviewCast.Podcast
+  alias ReviewCast.Model.Podcast
 
   test "fetches recent podcasts" do
     recent_podcasts = Source.recent

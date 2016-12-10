@@ -1,7 +1,7 @@
-defmodule ReviewCast.Podcast do
+defmodule ReviewCast.Model.Podcast do
 
   use Ecto.Schema
-  alias ReviewCast.Podcast
+  alias ReviewCast.Model.Podcast
 
   schema "podcasts" do
     field :title, :string

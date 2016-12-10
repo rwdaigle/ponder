@@ -3,7 +3,7 @@ defmodule Fetcher.Source.Mock do
   @behaviour Fetcher.Source
   alias Fetcher.Source
 
-  alias ReviewCast.Podcast
+  alias ReviewCast.Model.Podcast
 
   def recent do
     1..200 |> Enum.map(&podcast(&1))

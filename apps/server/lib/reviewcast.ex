@@ -1,13 +1,13 @@
-defmodule Server do
+defmodule ReviewCast do
 
   import Ecto.Changeset
   import Ecto.Query
-  alias ReviewCast.Podcast
-  alias Server.PodcastRepo
+  alias ReviewCast.Model.Podcast
+  alias ReviewCast.Repo
 
   def import(podcasts) do
     podcasts
-    |> Enum.map(&Task.async(Server, :import_podcast, [&1]))
+    |> Enum.map(&Task.async(ReviewCast, :import_podcast, [&1]))
     |> Enum.map(&Task.await(&1, 30000))
     |> List.flatten
   end
@@ -16,14 +16,14 @@ defmodule Server do
     query = from p in Podcast,
       where: p.source == ^podcast.source and p.source_id == ^podcast.source_id
 
-    PodcastRepo.one(query)
+    Repo.one(query)
     |> upsert_podcast(podcast)
   end
 
-  defp upsert_podcast(nil, new), do: PodcastRepo.insert(new)
+  defp upsert_podcast(nil, new), do: Repo.insert(new)
   defp upsert_podcast(existing, new) do
     existing
     |> cast(Map.from_struct(new), [:title, :description, :html_url, :image_url])
-    |> PodcastRepo.update
+    |> Repo.update
   end
 end

@@ -1,4 +1,4 @@
-defmodule Server.PodcastRepo.Migrations.AddPodcasts do
+defmodule ReviewCast.Repo.Migrations.AddPodcasts do
   use Ecto.Migration
 
   def change do

@@ -1,6 +1,6 @@
 defmodule Fetcher.Source do
-  
-  alias ReviewCast.Podcast
+
+  alias ReviewCast.Model.Podcast
   import Ecto.Changeset
   @callback recent() :: [%Podcast{}]
 

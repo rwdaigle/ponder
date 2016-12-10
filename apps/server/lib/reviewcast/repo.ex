@@ -1,3 +1,3 @@
-defmodule Server.PodcastRepo do
+defmodule ReviewCast.Repo do
   use Ecto.Repo, otp_app: :server
 end

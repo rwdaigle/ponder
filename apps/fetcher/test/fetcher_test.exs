@@ -1,7 +1,7 @@
 defmodule FetcherTest do
 
   use ExUnit.Case, async: true
-  alias ReviewCast.Podcast
+  alias ReviewCast.Model.Podcast
 
   test "fetches from sources" do
     podcasts = Fetcher.fetch_sources
