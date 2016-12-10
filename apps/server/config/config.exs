@@ -24,7 +24,8 @@ config :server, ecto_repos: [Server.PodcastRepo]
 
 config :server, Server.PodcastRepo,
   adapter: Ecto.Adapters.Postgres,
-  url: {:system, "DATABASE_URL"}
+  url: {:system, "DATABASE_URL"},
+  pool_size: 15
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment

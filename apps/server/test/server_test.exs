@@ -1,7 +1,7 @@
 defmodule ServerTest do
-  use ExUnit.Case
+
+  use ExUnit.Case, async: true
   import Ecto.Query
-  import Ecto.Query.API
   alias ReviewCast.Podcast
   alias Server.PodcastRepo
 
@@ -10,11 +10,7 @@ defmodule ServerTest do
     |> Enum.map(&podcast(&1))
     |> Server.import
 
-    count_podcasts =
-      from p in Podcast, select: count(p.id)
-      |> PodcastRepo.one
-
-    assert count_podcasts == 10
+    assert PodcastRepo.one(from p in Podcast, select: count(p.id)) == 10
   end
 
   defp podcast(i) do
