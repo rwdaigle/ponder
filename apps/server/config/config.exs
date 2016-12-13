@@ -25,7 +25,7 @@ config :server, ecto_repos: [Reviewcast.Repo]
 config :server, Reviewcast.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: {:system, "DATABASE_URL"},
-  pool_size: 15
+  pool_size: 5
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
