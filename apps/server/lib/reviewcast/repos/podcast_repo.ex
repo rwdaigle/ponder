@@ -1,10 +1,10 @@
-defmodule ReviewCast.Repo.PodcastRepo do
+defmodule Reviewcast.Repo.PodcastRepo do
 
   import Ecto.Changeset
   import Ecto.Query
-  alias ReviewCast.Repo
-  alias ReviewCast.Model.Podcast
-  alias ReviewCast.Repo.PodcastRepo
+  alias Reviewcast.Repo
+  alias Reviewcast.Model.Podcast
+  alias Reviewcast.Repo.PodcastRepo
 
   def import(podcasts) do
     podcasts
@@ -13,18 +13,28 @@ defmodule ReviewCast.Repo.PodcastRepo do
     |> List.flatten
   end
 
-  def import_podcast(podcast = %Podcast{}) do
+  def import_podcast(params = %{}) do
     query = from p in Podcast,
-      where: p.source == ^podcast.source and p.source_id == ^podcast.source_id
+      where: p.source == ^params.source and p.source_id == ^params.source_id
 
     Repo.one(query)
-    |> upsert_podcast(podcast)
+    |> upsert_podcast(params)
   end
 
-  defp upsert_podcast(nil, new), do: Repo.insert(new)
-  defp upsert_podcast(existing, new) do
+  defp upsert_podcast(nil, params) do
+    changeset =
+      %Podcast{}
+      |> cast(params, [:title, :description, :source, :source_id, :html_url, :image_url])
+
+    cond do
+      changeset.valid? -> Repo.insert(changeset)
+      true -> {:error, changeset}
+    end
+  end
+
+  defp upsert_podcast(existing, params) do
     existing
-    |> cast(Map.from_struct(new), [:title, :description, :html_url, :image_url])
+    |> cast(params, [:title, :description, :html_url, :image_url])
     |> Repo.update
   end
 end

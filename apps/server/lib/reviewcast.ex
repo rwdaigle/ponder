@@ -1,6 +1,6 @@
-defmodule ReviewCast do
+defmodule Reviewcast do
 
-  alias ReviewCast.Repo.PodcastRepo
+  alias Reviewcast.Repo.PodcastRepo
 
   def import(podcasts) do
     podcasts |> PodcastRepo.import

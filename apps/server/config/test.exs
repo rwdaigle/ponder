@@ -2,7 +2,7 @@ use Mix.Config
 
 config :logger, level: :info
 
-config :server, ReviewCast.Repo,
+config :server, Reviewcast.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "reviewcast_test",
   hostname: "localhost",

@@ -1,4 +1,4 @@
-defmodule ReviewCast.Mixfile do
+defmodule Reviewcast.Mixfile do
   use Mix.Project
 
   def project do

@@ -1,7 +1,6 @@
-defmodule ReviewCast.Model.Podcast do
+defmodule Reviewcast.Model.Podcast do
 
   use Ecto.Schema
-  alias ReviewCast.Model.Podcast
 
   schema "podcasts" do
     field :title, :string
@@ -11,6 +10,6 @@ defmodule ReviewCast.Model.Podcast do
     field :source, :string
     field :source_id, :string
 
-    timestamps
+    timestamps()
   end
 end

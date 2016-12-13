@@ -1,4 +1,4 @@
-# ReviewCast
+# Reviewcast
 
 **TODO: Add description**
 

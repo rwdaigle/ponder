@@ -20,7 +20,9 @@ use Mix.Config
 #
 #     config :logger, level: :info
 #
-config :fetcher, sources: [Fetcher.Source.Mock]
+config :fetcher, sources: [Fetcher.Source.ITunes]
+
+config :fetcher, ecto_repos: []
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
@@ -28,4 +30,4 @@ config :fetcher, sources: [Fetcher.Source.Mock]
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 #
-# import_config "#{Mix.env}.exs"
+import_config "#{Mix.env}.exs"

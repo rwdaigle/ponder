@@ -1,4 +1,4 @@
-defmodule ReviewCast.Server.Mixfile do
+defmodule Reviewcast.Server.Mixfile do
   use Mix.Project
 
   def project do
@@ -20,7 +20,7 @@ defmodule ReviewCast.Server.Mixfile do
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
     [extra_applications: [:logger],
-     mod: {ReviewCast.Application, []}]
+     mod: {Reviewcast.Application, []}]
   end
 
   # Dependencies can be Hex packages:

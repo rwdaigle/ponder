@@ -20,9 +20,9 @@ use Mix.Config
 #
 #     config :logger, level: :info
 #
-config :server, ecto_repos: [ReviewCast.Repo]
+config :server, ecto_repos: [Reviewcast.Repo]
 
-config :server, ReviewCast.Repo,
+config :server, Reviewcast.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: {:system, "DATABASE_URL"},
   pool_size: 15

@@ -1,19 +1,19 @@
-defmodule ReviewCastTest do
+defmodule ReviewcastTest do
 
   use ExUnit.Case, async: false
   import Ecto.Query
-  alias ReviewCast.Model.Podcast
-  alias ReviewCast.Repo
+  alias Reviewcast.Model.Podcast
+  alias Reviewcast.Repo
 
   setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ReviewCast.Repo)
-    Ecto.Adapters.SQL.Sandbox.mode(ReviewCast.Repo, {:shared, self()})
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Reviewcast.Repo)
+    Ecto.Adapters.SQL.Sandbox.mode(Reviewcast.Repo, {:shared, self()})
   end
 
   test "importing podcasts" do
     1..10
     |> Enum.map(&podcast(&1))
-    |> ReviewCast.import
+    |> Reviewcast.import
 
     assert Repo.one(from p in Podcast, select: count(p.id)) == 10
   end
@@ -22,7 +22,7 @@ defmodule ReviewCastTest do
   end
 
   defp podcast(i) do
-    %Podcast{
+    %{
       title: "Podcast #{i}",
       source: "itunes",
       description: "A great #{i} podcast.",
