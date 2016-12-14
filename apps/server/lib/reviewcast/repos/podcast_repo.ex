@@ -4,20 +4,16 @@ defmodule Reviewcast.Repo.PodcastRepo do
   import Ecto.Query
   alias Reviewcast.Repo
   alias Reviewcast.Model.Podcast
-  alias Reviewcast.Repo.PodcastRepo
 
   def import(podcasts) do
-    podcasts
-    |> Enum.map(&Task.async(PodcastRepo, :import_podcast, [&1]))
-    |> Enum.map(&Task.await(&1, 30000))
-    |> List.flatten
+    podcasts |> Enum.each(&import_podcast(&1))
   end
 
   def import_podcast(params = %{}) do
     query = from p in Podcast,
       where: p.source == ^params.source and p.source_id == ^params.source_id
 
-    Repo.one(query)
+    Repo.one(query, repo_options())
     |> upsert_podcast(params)
   end
 
@@ -27,7 +23,7 @@ defmodule Reviewcast.Repo.PodcastRepo do
       |> cast(params, [:title, :description, :source, :source_id, :html_url, :image_url])
 
     cond do
-      changeset.valid? -> Repo.insert(changeset)
+      changeset.valid? -> Repo.insert(changeset, repo_options())
       true -> {:error, changeset}
     end
   end
@@ -37,4 +33,6 @@ defmodule Reviewcast.Repo.PodcastRepo do
     |> cast(params, [:title, :description, :html_url, :image_url])
     |> Repo.update
   end
+
+  defp repo_options, do: [timeout: 10000, pool_timeout: 30000]
 end

@@ -5,9 +5,8 @@ defmodule Mix.Tasks.Reviewcast.Import do
   def run(_) do
     {:ok, _fetcher} = Application.ensure_all_started(:fetcher)
     {:ok, _server} = Application.ensure_all_started(:server)
-    IO.puts "Importing..."
     Fetcher.fetch_sources
-    |> Enum.map(fn(p) -> IO.puts(p.title); p end)
+    |> Enum.map(fn(p) -> IO.puts("Importing #{p.source}:#{p.source_id} #{p.title}"); p end)
     |> Reviewcast.import
   end
 end
