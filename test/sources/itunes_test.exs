@@ -3,7 +3,7 @@ defmodule ITunesSourceTest do
   use ExUnit.Case, async: true
   @moduletag :remote
 
-  alias Fetcher.Source.ITunes, as: Source
+  alias Reviewcast.Fetcher.Source.ITunes, as: Source
 
   test "fetches recent podcasts" do
     recent_podcasts = Source.recent

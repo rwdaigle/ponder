@@ -1,9 +1,9 @@
-defmodule Fetcher.Source.ITunes do
+defmodule Reviewcast.Fetcher.Source.ITunes do
 
-  @behaviour Fetcher.Source
+  @behaviour Reviewcast.Fetcher.Source
 
   alias HTTPotion.Response
-  alias Fetcher.Source.ITunes
+  alias Reviewcast.Fetcher.Source.ITunes
   alias Poison.Parser, as: JSON
 
   def recent do

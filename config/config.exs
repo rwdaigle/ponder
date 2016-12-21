@@ -10,21 +10,21 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :server, key: :value
+#     config :reviewcast, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:server, :key)
+#     Application.get_env(:reviewcast, :key)
 #
 # Or configure a 3rd-party app:
 #
 #     config :logger, level: :info
 #
-config :fetcher, sources: [Fetcher.Source.ITunes]
+config :reviewcast, sources: [Reviewcast.Fetcher.Source.ITunes]
 
-config :server, ecto_repos: [Reviewcast.Repo]
+config :reviewcast, ecto_repos: [Reviewcast.Repo]
 
-config :server, Reviewcast.Repo,
+config :reviewcast, Reviewcast.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: {:system, "DATABASE_URL"},
   pool_size: 5

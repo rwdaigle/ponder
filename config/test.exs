@@ -4,7 +4,7 @@ config :logger, level: :info
 
 config :fetcher, sources: [Fetcher.Source.Mock]
 
-config :server, Reviewcast.Repo,
+config :reviewcast, Reviewcast.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "reviewcast_test",
   hostname: "localhost",

@@ -33,6 +33,6 @@ $ mix test
 You can also go into individual sub-apps to test directly:
 
 ```bash
-$ cd apps/server
+$ cd apps/reviewcast
 $ mix test
 ```

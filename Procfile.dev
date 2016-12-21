@@ -1,1 +1,0 @@
-db:      postgres -D db/postgresql # init locally with pg_ctl init -D db/postgresql

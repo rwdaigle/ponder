@@ -1,6 +1,6 @@
-defmodule Fetcher.Source.Mock do
+defmodule Reviewcast.Fetcher.Source.Mock do
 
-  @behaviour Fetcher.Source
+  @behaviour Reviewcast.Fetcher.Source
 
   def recent do
     1..200 |> Enum.map(&podcast(&1))
