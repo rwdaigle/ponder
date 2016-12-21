@@ -1,6 +1,6 @@
 defmodule ReviewcastTest do
 
-  use ExUnit.Case, async: false
+  use ExUnit.Case, async: true
   import Ecto.Query
   alias Reviewcast.Model.Podcast
   alias Reviewcast.Repo

@@ -1,11 +1,26 @@
-defmodule Reviewcast.Mixfile do
+defmodule Reviewcast.Server.Mixfile do
   use Mix.Project
 
   def project do
-    [apps_path: "apps",
+    [app: :server,
+     version: "0.1.0",
+     build_path: "_build",
+     config_path: "config/config.exs",
+     deps_path: "deps",
+     lockfile: "mix.lock",
+     elixir: "~> 1.4-rc",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
+  end
+
+  # Configuration for the OTP application
+  #
+  # Type "mix help compile.app" for more information
+  def application do
+    # Specify extra applications you'll use from Erlang/Elixir
+    [extra_applications: [:logger],
+     mod: {Reviewcast.Application, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -16,11 +31,17 @@ defmodule Reviewcast.Mixfile do
   #
   #   {:my_dep, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
   #
-  # Type "mix help deps" for more examples and options.
+  # To depend on another app inside the umbrella:
   #
-  # Dependencies listed here are available only for this project
-  # and cannot be accessed from applications inside the apps folder
+  #   {:my_app, in_umbrella: true}
+  #
+  # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:ecto, "~> 2.1"},
+      {:postgrex, "~> 0.11"},
+      {:poison, "~> 2.0"},
+      {:httpotion, "~> 3.0.2"}
+    ]
   end
 end

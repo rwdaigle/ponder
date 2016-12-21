@@ -3,7 +3,6 @@ defmodule Mix.Tasks.Reviewcast.Import do
 
   @shortdoc "Import podcasts from all source"
   def run(_) do
-    {:ok, _fetcher} = Application.ensure_all_started(:fetcher)
     {:ok, _server} = Application.ensure_all_started(:server)
     Fetcher.fetch_sources
     |> Enum.map(fn(p) -> IO.puts("Importing #{p.source}:#{p.source_id} #{p.title}"); p end)
