@@ -11,6 +11,7 @@ defmodule Fetcher.Source.ITunes do
     |> Enum.map(&Task.async(ITunes, :fetch_feed, [&1]))
     |> Enum.map(&Task.await(&1, 120000))
     |> List.flatten
+    |> Enum.uniq_by(fn p -> {p.source, p.source_id} end)
   end
 
   def fetch_feed(category_id) do

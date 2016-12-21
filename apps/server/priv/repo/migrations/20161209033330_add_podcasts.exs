@@ -10,7 +10,8 @@ defmodule Reviewcast.Repo.Migrations.AddPodcasts do
       add :html_url, :string
       add :image_url, :string
 
-      timestamps
+      add :inserted_at, :naive_datetime, default: fragment("NOW()")
+      add :updated_at, :naive_datetime, default: fragment("NOW()")
     end
   end
 end
