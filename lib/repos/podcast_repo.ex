@@ -5,7 +5,6 @@ defmodule Reviewcast.Repo.PodcastRepo do
 
   def import(podcasts) do
     podcasts
-    |> Enum.map(&(Map.put(&1, :updated_at, Ecto.DateTime.utc)))
     |> Enum.chunk(500, 500, [])
     |> Enum.each(&insert(&1))
   end
