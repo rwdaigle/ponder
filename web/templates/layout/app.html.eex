@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Hello Reviewcast!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <title>Review Cast - A community for podcast afficionados</title>
+
+    <link href="<%= static_path(@conn, "/css/app.css") %>" rel="stylesheet">
   </head>
 
-  <body>
-    <div class="container">
-      <div class="main">
-        <%= render @view_module, @view_template, assigns %>
-      </div>
-    </div> <!-- /container -->
+  <body class="with-top-navbar">
+
+    <%= render @view_module, @view_template, assigns %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="<%= static_path(@conn, "/js/theme/tether.min.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/theme/chart.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/theme/toolkit.min.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script>
+      // execute/clear BS loaders for docs
+      $(function(){
+        if (window.BS&&window.BS.loader&&window.BS.loader.length) {
+          while(BS.loader.length){(BS.loader.pop())()}
+        }
+      })
+    </script>
+
   </body>
 </html>
