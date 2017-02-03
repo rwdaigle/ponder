@@ -17,6 +17,7 @@ defmodule Reviewcast.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/podcast", PageController, :podcast
   end
 
   # Other scopes may use custom stacks.
