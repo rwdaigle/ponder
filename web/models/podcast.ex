@@ -1,4 +1,4 @@
-defmodule Reviewcast.Model.Podcast do
+defmodule Reviewcast.Podcast do
 
   use Ecto.Schema
 
@@ -10,6 +10,6 @@ defmodule Reviewcast.Model.Podcast do
     field :source, :string
     field :source_id, :string
 
-    timestamps()
+    field :inserted_at, :naive_datetime
   end
 end
