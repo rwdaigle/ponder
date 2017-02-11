@@ -9,11 +9,17 @@
     <link href="<%= static_path(@conn, "/css/app.css") %>" rel="stylesheet">
   </head>
 
-  <body class="with-top-navbar">
+  <body>
 
-    <%= render "header.html" %>
-    <%= render @view_module, @view_template, assigns %>
-
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <%= render "header.html" %>
+        </div>
+      </div>
+      <%= render @view_module, @view_template, assigns %>
+    </div>
+    
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
