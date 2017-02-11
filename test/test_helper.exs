@@ -1,10 +1,17 @@
 ExUnit.start
 
 alias Reviewcast.Podcast
+alias Reviewcast.Repo.PodcastRepo
 
 # Ecto.Adapters.SQL.Sandbox.mode(Reviewcast.Repo, :manual)
 
 defmodule Reviewcast.Test do
+
+  def create_podcasts(num \\ 10) do
+    1..num
+    |> Enum.map(&build_podcast_map(&1))
+    |> PodcastRepo.import
+  end
 
   def build_podcast_map(i \\ 1, params \\ %{}) do
     %{

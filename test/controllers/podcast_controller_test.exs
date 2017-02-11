@@ -8,11 +8,19 @@ defmodule Reviewcast.PodcastControllerTest do
   @valid_attrs %{}
   @invalid_attrs %{}
 
-  # test "lists all entries on index", %{conn: conn} do
-  #   conn = get conn, podcast_path(conn, :index)
-  #   assert html_response(conn, 200) =~ "Listing podcasts"
-  # end
-  #
+  test "list podcasts", %{conn: conn} do
+    create_podcasts(20)
+    conn = get conn, podcast_path(conn, :index)
+    assert html_response(conn, 200) =~ "Podcasts"
+
+    PodcastRepo.all(10)
+    |> Enum.each(fn(p) -> assert html_response(conn, 200) =~ p.title end)
+
+    PodcastRepo.all(20)
+    |> Enum.slice(11..20)
+    |> Enum.each(fn(p) -> refute html_response(conn, 200) =~ p.title end)
+  end
+  
   # test "renders form for new resources", %{conn: conn} do
   #   conn = get conn, podcast_path(conn, :new)
   #   assert html_response(conn, 200) =~ "New podcast"

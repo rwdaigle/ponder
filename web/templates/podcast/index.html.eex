@@ -1,24 +1,12 @@
-<h2>Listing podcasts</h2>
+<h2>Podcasts</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
 <%= for podcast <- @podcasts do %>
-    <tr>
-
-      <td class="text-right">
-        <%= link "Show", to: podcast_path(@conn, :show, podcast), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: podcast_path(@conn, :edit, podcast), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: podcast_path(@conn, :delete, podcast), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
+  <div class="podcast">
+    <div class="cover-art"><img src="<%= podcast.image_url %>"></div>
+    <div class="title"><%= podcast.title %></div>
+    <div class="description"><%= podcast.description %></div>
+    <div class="actions">
+      <%= link "Show", to: podcast_path(@conn, :show, podcast), class: "btn btn-default btn-xs" %>
+    </div>
+  </div>
 <% end %>
-  </tbody>
-</table>
-
-<%= link "New podcast", to: podcast_path(@conn, :new) %>

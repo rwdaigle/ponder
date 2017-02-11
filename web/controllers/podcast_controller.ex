@@ -1,10 +1,11 @@
 defmodule Reviewcast.PodcastController do
-  use Reviewcast.Web, :controller
 
+  use Reviewcast.Web, :controller
   alias Reviewcast.Podcast
+  alias Reviewcast.Repo.PodcastRepo
 
   def index(conn, _params) do
-    podcasts = Repo.all(Podcast)
+    podcasts = PodcastRepo.all(10)
     render(conn, "index.html", podcasts: podcasts)
   end
 

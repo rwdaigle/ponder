@@ -14,19 +14,6 @@
     <%= render "header.html" %>
     <%= render @view_module, @view_template, assigns %>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="<%= static_path(@conn, "/js/theme/tether.min.js") %>"></script>
-    <script src="<%= static_path(@conn, "/js/theme/chart.js") %>"></script>
-    <script src="<%= static_path(@conn, "/js/theme/toolkit.min.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-    <script>
-      // execute/clear BS loaders for docs
-      $(function(){
-        if (window.BS&&window.BS.loader&&window.BS.loader.length) {
-          while(BS.loader.length){(BS.loader.pop())()}
-        }
-      })
-    </script>
-
   </body>
 </html>

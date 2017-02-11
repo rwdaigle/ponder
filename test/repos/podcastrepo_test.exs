@@ -51,4 +51,14 @@ defmodule Reviewcast.PodcastRepoTest do
 
     assert PodcastRepo.count == 21000
   end
+
+  test "getting all podcasts" do
+    create_podcasts(20)
+    assert Enum.count(PodcastRepo.all) == 20
+  end
+
+  test "getting limited number of podcasts" do
+    create_podcasts(20)
+    assert Enum.count(PodcastRepo.all(5)) == 5
+  end
 end

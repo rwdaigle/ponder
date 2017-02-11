@@ -6,10 +6,11 @@ defmodule Reviewcast.Repo.PodcastRepo do
 
   alias Reviewcast.Repo
   alias Reviewcast.Podcast
-  alias Reviewcast.Repo.PodcastRepo
 
   import Ecto.Query
 
+  def all, do: Repo.all(from p in Podcast)
+  def all(limit \\ 10), do: Repo.all(from p in Podcast, limit: ^limit)
   def count, do: Repo.one(from p in Podcast, select: count(p.id))
 
   def insert!(podcast = %Podcast{}), do: Repo.insert!(podcast)
